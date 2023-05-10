@@ -1,0 +1,140 @@
+const user = {
+
+ lastActivityTime: null,
+
+ posts: []
+
+};
+
+
+
+function createPost(post) {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   user.posts.push(post);
+
+   resolve();
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+
+
+function updateLastUserActivityTime() {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   user.lastActivityTime = new Date().toLocaleTimeString();
+
+   resolve();
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+function deleteLastPost() {
+
+ return new Promise((resolve, reject) => {
+
+  setTimeout(() => {
+
+   if (user.posts.length > 0) {
+
+    const deletedPost = user.posts.pop();
+
+    resolve(deletedPost);
+
+   } else {
+
+    reject("No posts to delete");
+
+   }
+
+  }, 1000);
+
+ });
+
+}
+
+
+
+
+
+createPost({ title: 'Post 1' })
+
+ .then(() => updateLastUserActivityTime())
+
+ .then(() => {
+
+  console.log("Posts created by the user:");
+
+  console.log(user.posts);
+
+  console.log("Last activity time of the user:", user.lastActivityTime);
+
+  return deleteLastPost();
+
+ })
+
+ .then((deletedPost) => {
+
+  console.log("Deleted post:", deletedPost);
+
+  console.log("New set of posts:");
+
+  console.log(user.posts);
+
+ })
+
+ .catch((error) => {
+
+  console.error(error);
+
+ });
+
+
+
+
+
+
+
+Q) Why on Earth do we need promise.all ?
+
+
+
+A) we need promise.all, when we want to run 2 or more promises simulatneously because it saves time.
+
+
+
+for example 
+
+promise 1 : tasks create post with setTimeout: 5 sec
+
+
+
+promise 2: tasks update the time of the created post: 6 sec
+
+
+
+if promise1 is called followed by promise 2 then in total it will take 11 secs to execute both the promise executing one after another.
+
+[promise.all(promise1, promise2) ] promise.all can be used to save time this will execute both the promises in max(time_promise1, time_promise2)
+
+which is 6 sec.
+
+the ideal time to use promise.all is when all the promises are independent of each other.
+
