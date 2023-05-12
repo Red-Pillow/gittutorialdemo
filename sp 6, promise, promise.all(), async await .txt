@@ -1,0 +1,234 @@
+https://student.sharpener.tech/course/7/assignment/7/task/310?AttemptId=1
+
+Task details
+
+Watch this video
+
+https://www.youtube.com/watch?v=IGoAdn-e5II
+
+
+
+Deliverable
+
+Watch uptill the 18th min and write down the code as per the youtuber does both the pronises and asyn await
+Now create a new promise called getColdDrinks which come after husband gets butter. Integrate the code in both async and await and also promises' code
+Continue watching from the 18th min to 23rd min and understand how to handle Promise.all with async await
+Convert the createPost , deletePost you wrote previously into async await completely. If stuck for long watch hint 1.
+
+
+For understanding the use of async await with promises in more depths watch this playlist of all 3 videos - https://www.youtube.com/embed/videoseries?list=PL4dunL3FOEk0oC4_7RxguRkfARozcwUj8
+
+
+
+
+
+[Favourite Interview Question] - Why were promises discovered?
+
+Why are async await better than promise.then design pattern? ? Explain with an example.
+
+Lets plan a trip together to Manali and understand promises. Watch this video XD.
+Write your own answer with an example
+
+
+Push the code to git and upload the commit IDs
+
+
+
+
+--------------------------------------------------------------------------------------------------------------------------------
+soltuion
+--------------------------------------------------------------------------------------------------------------------------------
+
+
+using promise:
+
+promise:
+
+console.log('person1: shows ticket');
+console.log('person2: shows ticket');
+
+const promiseWifeBringingTicks = new Promise((resolve, reject)=>{
+	setTimeout(()=> {
+	resolve(`ticket`);
+	},3000)
+});
+
+
+
+
+const getPopcorn = promiseWifeBringingTicks.then((t) => {
+    console.log (`wife: i have the ticket`);
+	console.log(`husband: we should go`);
+    console.log(`wife: I'm hungry`);
+    return new Promise((resolve,reject)=> resolve(`${t} popcorn`));
+});
+
+const getButter  = getPopcorn.then((t) => {
+    console.log('husband: i got some popcorn')
+    console.log('husband: we should go in');
+    console.log('wife: we need some butter on my popcorn');
+    console.log('wife: I want some drink');
+
+    return new Promise((resolve, reject)=> resolve(`${t} butter`));
+});
+
+
+const getColdDrinks = getColdDrinks.then((t)=>{
+	console.log('husband: i got some cold drink')
+
+	return new Promise((resolve, reject)=> resolve(`${t} colddrink`));
+ 
+getColdDrinks.then((t)=> console.log(t));
+
+console.log(`person4: shows ticket`);
+console.log(`person5: shows ticket`);
+
+
+using async await:
+
+
+async await:
+
+promise:
+
+console.log('person1: shows ticket');
+console.log('person2: shows ticket');
+
+
+const preMovie = async ()=> {
+
+const promiseWifeBringingTicks = new Promise((resolve, reject)=>{
+	setTimeout(()=> {
+	resolve(`ticket`);
+	},3000)
+});
+
+
+
+const getPopcorn = new Promise((resolve, reject)=> resolve('popcorn'));
+const addButter = new Promise((resolve, reject)=> resolve('butter'));
+const getColdDrink = new Promise((resolve, reject)=> resolve('colddrink'));
+
+let ticket = await promiseWifeBringingTicks;
+
+console.log (`wife: i have the ${ticket}`);
+console.log(`husband: we should go`);
+console.log(`wife: I'm hungry`);
+
+let popcorn = await getPopcorn;
+
+console.log(`husband: i got some ${popcorn}`)
+console.log('husband: we should go in');
+console.log('wife: we need some butter on my popcorn');
+
+
+let butter = await addButter;
+
+console.log(`husband: i got some ${butter}`)
+console.log(`husband: anything else darling?`)
+console.log(`wife: lets go we are getting late`)
+console.log(`husband: thanks for the reminder *grins*`)
+
+
+let colddrinks = await getColdDrink;
+console.log('husband: i got some cold drink')
+
+
+return ticket;
+
+}
+
+
+preMovie().then((m) => console.log(`person3: shows ${m}`));
+
+console.log(`person4: shows ticket`);
+console.log(`person5: shows ticket`);
+
+
+
+concepts of promise.all()
+
+primise.all()
+
+promise:
+
+console.log('person1: shows ticket');
+console.log('person2: shows ticket');
+
+
+const preMovie = async ()=> {
+
+const promiseWifeBringingTicks = new Promise((resolve, reject)=>{
+	setTimeout(()=> {
+	reject(`ticket`);
+	},3000)
+});
+
+
+
+const getPopcorn = new Promise((resolve, reject)=> resolve('popcorn'));
+const getCandy = new Promise((resolve, reject)=> resolve('candy'));
+const getCoke = new Promise((resolve, reject)=> resolve('coke'));
+
+let ticket = await promiseWifeBringingTicks;
+
+let [popcorn, candy, coke]= await Promise.add([getPopcorn, getCandy, getCoke])
+
+console.log('${popcorn}, ${candy}, ${coke}');
+
+return ticket
+}
+
+
+let ticket
+try {
+ticket = await promiseWifeBringingTicket;
+
+   } catch(e){
+ticket = 'sad face'}
+
+preMovie().then((m) => console.log(`person3: shows ${m}`));
+
+console.log(`person4: shows ticket`);
+console.log(`person5: shows ticket`);
+
+
+q) Why were promises discovered?
+a) To address the problem of asynchronous programming and provide a better way to handle asynchronous operations.
+
+JavaScript primarily relied on callbacks to handle asynchronous tasks. Callbacks could lead to callback hell, where code became difficult to read and maintain due to nested callbacks. Promises were introduced to simplify asynchronous programming and make it more manageable.
+
+Promises provide a way to represent the eventual result of an asynchronous operation. They allow you to attach callbacks that will be executed when the operation succeeds or fails. Promises have built-in methods like .then() and .catch() to handle successful and failed outcomes, respectively. Promises also support chaining, which makes it easier to compose and sequence asynchronous operations.
+
+q) Why are async await better than promise.then design pattern? ? Explain with an example.
+
+a) The async/await syntax is considered a more readable and intuitive way to handle asynchronous operations compared to the Promise.then design pattern. It allows you to write asynchronous code that resembles synchronous code, making it easier to understand and maintain. Here's an example to illustrate the difference:
+
+Using the Promise.then design pattern:
+
+function getUser(userId) {
+  return getUserData(userId)
+    .then((user) => {
+      return getRelevantData(user);
+    })
+    .then((relevantData) => {
+      return process(relevantData);
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+}
+
+Using async/await:
+
+async function getUser(userId) {
+  try {
+    const user = await getUserData(userId);
+    const relevantData = await getRelevantData(user);
+    const processedData = await process(relevantData);
+    return processedData;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
