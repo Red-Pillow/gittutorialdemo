@@ -221,3 +221,36 @@ document
   .addEventListener('click', transformResponse);
 document.getElementById('error').addEventListener('click', errorHandling);
 document.getElementById('cancel').addEventListener('click', cancelToken);
+
+
+
+-----------------------------------------------------------------
+1) Why do we need headers any idea?
+a) Headers in Axios, or in any HTTP request, are used to provide additional information to the server or modify the behavior of the request. They are an essential part of the communication between a client (such as a web browser or a JavaScript application) and a server.
+*) Authentication: Headers often contain authentication credentials or tokens to authenticate the client with the server.
+*) Content negotiation: The "Accept" header allows the client to specify the type of content it expects in the response, such as JSON, XML, or plain text. Similarly, the "Content-Type" header is used to indicate the type of data being sent in the request body, allowing the server to parse it correctly.
+*) Caching: Headers like "Cache-Control" and "Expires" control caching behavior. They inform the client or intermediary caches about how long the response can be cached and under what conditions it should be revalidated.
+*) Request modification: Headers like "User-Agent" allow the client to identify itself to the server, providing information about the user agent (browser, application, or device) making the request. This can help the server customize the response or handle requests differently based on the client.
+*) Cross-Origin Resource Sharing (CORS): CORS headers, such as "Access-Control-Allow-Origin" and "Access-Control-Allow-Headers," are used to enable or restrict cross-origin requests. They ensure that requests from different origins (domains) are properly authorized by the server.
+*) Request metadata: Headers can carry additional metadata about the request, such as the language preferences ("Accept-Language"), session information ("Cookie"), or client-specific data.
+
+
+2) What is axios?
+a) Axios is a popular JavaScript library used for making HTTP requests from a web browser or a Node.js environment. It provides a simple and intuitive API for performing asynchronous operations and handling HTTP communication.
+*) Promise-based: Axios is built on JavaScript promises, allowing you to take advantage of features like chaining and async/await for handling asynchronous operations. This simplifies the handling of asynchronous code and makes it more readable and maintainable.
+*) Browser and Node.js support: Axios can be used both in web browsers and in Node.js applications. It provides a consistent API for making HTTP requests across different environments, making it a versatile choice for frontend and backend development.
+*) Cross-origin resource sharing (CORS): Axios automatically handles CORS, which allows you to make HTTP requests to different domains or origins. It provides the necessary headers and options to perform cross-origin requests securely.
+*) Request and response interception: Axios allows you to intercept and modify requests and responses using interceptors. This gives you the ability to add custom logic, such as adding authentication headers or handling errors globally, to all requests or specific ones.
+*) Error handling: Axios provides a robust error handling mechanism. It automatically rejects promises and triggers error callbacks in case of network errors, request timeouts, or HTTP status codes outside the successful range (e.g., 4xx or 5xx errors).
+*) Cancelation support: Axios supports canceling requests, allowing you to abort ongoing requests if they are no longer needed. This can be useful in scenarios where a user navigates away from a page or interrupts a request.
+
+
+3) What are the common problems faced when you make network calls and what should you do to solve it.
+a) 
+*) Connectivity issues: Network calls can fail due to connectivity problems, such as a loss of internet connection or server unavailability. To handle this, you can implement appropriate error handling and retry mechanisms. For example, you can catch network errors and retry the request a certain number of times with a delay between retries.
+*) Timeout errors: Network requests may take longer than expected, leading to timeout errors. It's important to set reasonable timeout values for your requests to avoid long delays. If a request times out, you can retry it or provide a meaningful error message to the user.
+*) Error handling and status codes: Network requests can return various HTTP status codes, indicating the success or failure of the request. It's important to handle different status codes appropriately. For example, you might handle 4xx errors (client errors) differently from 5xx errors (server errors). Provide clear error messages to users and handle exceptional cases accordingly.
+*) Cross-Origin Resource Sharing (CORS) issues: Cross-origin requests may face CORS restrictions if the server doesn't allow requests from different domains. To resolve this, ensure that the server includes appropriate CORS headers (e.g., Access-Control-Allow-Origin) to allow your client application's domain.
+*) Rate limiting and throttling: APIs may have rate limits or throttling mechanisms in place to control the number of requests per unit of time. If you exceed these limits, you may receive rate limit or throttling errors. To handle this, you can implement rate limit tracking, backoff strategies, or inform the user about limitations to avoid exceeding the allowed limits.
+*) Security concerns: Network calls may involve sensitive information or authentication mechanisms. Ensure that you use secure protocols (e.g., HTTPS) to encrypt data during transmission. Implement proper authentication mechanisms and handle sensitive data securely.
+*) Large responses and performance: Network calls that return large amounts of data can impact performance and user experience. Consider implementing pagination, limiting the amount of data fetched, or optimizing server responses to improve performance.
