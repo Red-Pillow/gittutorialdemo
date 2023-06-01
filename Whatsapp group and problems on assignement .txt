@@ -1,0 +1,108 @@
+Ans 1)  
+
+There is a browser to which the user interacts and a website is called by typing in some URL. That URL looks up to a particular Doman name which sits in DNS (Domain Name Server). In DNS server there's mapping of Domain name : IP addresses which return an IP address of a website to our browser. Then the browser finally sends the HTTP request to that server (which has the IP address that our browser had). The server has the serverside code written in any language, but we use Node js here. this server (application server) is also connected to Database server. It then fetches the data from the database, format it as per the user requirement and responds to the user. The requests and response takes place with some protocol which are called HTTP and https (encrypted data). 
+
+
+
+Ans 2)  and Ans 3)
+
+fs: FIle system-related operations such as reading, writing, and manipulating files and directories.
+http: Helps in creating HTTP servers and making HTTP requests. 
+path: It helps in working with file paths. It provides functions to manipulate and resolve file paths on different operating systems.
+os: It provides information and utilities related to the operating system, such as retrieving system information, network interfaces, and managing processes.
+events: It is the fundamental module for event-driven programming in Node.js. It provides the EventEmitter class for creating and handling custom events.
+
+
+Ans 4) Relative Path: A relative path is defined in relation to the current working directory or another reference point. It indicates the path to a file or directory starting from the current location. Relative paths do not start with the root directory.
+
+Absolute Path: An absolute path provides the complete path from the root directory to a file or directory. It specifies the exact location of a file or directory in the file system hierarchy.
+
+
+
+Current Directory (.): Represents the current working directory. You can use a relative path based on the current directory by appending the file or directory name to it.
+Parent Directory (..): Represents the parent directory of the current directory. You can use .. in a relative path to refer to the parent directory.
+Subdirectories: If the file or directory you are referencing is located in a subdirectory of the current directory, you can specify the subdirectory name followed by the file or directory name.
+
+
+Ans 5) In Node.js, the createServer function is a method provided by the http module. It is used to create an HTTP server that listens for incoming HTTP requests and allows you to define how the server should handle those requests.
+
+
+
+Ans 6) It is a function that does not have any name associated with it. Normally we use the function keyword before the function name to define a function in JavaScript, however, in anonymous functions in JavaScript, we use only the function keyword without the function name.
+
+
+
+An anonymous function is not accessible after its initial creation, it can only be accessed by a variable it is stored in as a function as a value. An anonymous function can also have multiple arguments, but only one expression.
+
+
+
+Ans 7) In Node.js, the server.listen() method is used to start a server and make it listen for incoming network connections on a specified port. It binds the server to a specific network address (IP) and port number and enables it to handle incoming requests from clients.
+
+
+
+Here's why we need to use server.listen():
+
+
+
+Start the server: The server.listen() method is responsible for starting the server and making it operational. Once the server is listening, it will continuously listen for incoming requests.
+
+
+
+Specify the port: By calling server.listen(port), you can specify the port number on which the server should listen. The port number determines the entry point for incoming requests.
+
+
+
+Handle incoming requests: When the server is listening on the specified port, it can receive HTTP requests from clients. Each incoming request triggers the 'request' event, allowing you to define the logic for handling the request and generating the appropriate response.
+
+
+
+Enable network communication: The server.listen() method establishes the network communication between the server and clients. It sets up the necessary connections and protocols (such as TCP/IP) to facilitate the exchange of data over the network.
+
+
+
+Allow access to the server: After calling server.listen(), the server becomes accessible to clients. Clients can send HTTP requests to the server's IP address and port number, and the server can respond to those requests.
+
+
+
+Ensure availability: By binding the server to a specific IP address and port, the server.listen() method ensures that the server is dedicated to handling incoming requests on that specific network address and port. This helps in maintaining the availability and accessibility of the server.
+
+
+
+
+
+Deliverable solutions:
+
+
+
+const http = require('http');
+
+
+
+const server = http.createServer((req,res) => {
+
+  // console.log(req);
+
+  //process.exit();
+
+  res.setHeader('Content-Type', 'text/html');
+
+  res.write('<html>');
+
+  res.write('<head><title> My name is </title><head>');
+
+  res.write('<body> <h1> Chetan Sahu </h1> </body>');
+
+  res.write('</html>');
+
+  res.end();
+
+
+
+});
+
+
+
+server.listen(4000);
+
+
+
